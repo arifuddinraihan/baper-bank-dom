@@ -42,21 +42,32 @@ document.getElementById('btn-withdraw').addEventListener('click', ()=>{
     withdrawInputText.value = '';
     // console.log(newWithdrawInput);
 
+    if(isNaN(newWithdrawInput)){
+        alert("Please provide a valid number!")
+        return;
+    }
+
     const withdrawAmount = document.getElementById('withdraw-view');
     const withdrawViewString = withdrawAmount.innerText;
     const previousWithdraw = parseFloat(withdrawViewString);
     // console.log(withdrawView);
-
-    const newWithdraw = newWithdrawInput + previousWithdraw;
-    // console.log(newWithdraw);
-
-    withdrawAmount.innerText = newWithdraw;
 
     const balanceText = document.getElementById('total-view');
     const previousBalace = parseFloat(balanceText.innerText);
 
     const newBalance = previousBalace - newWithdrawInput;
     // console.log(newBalance);
+
+    if (previousBalace < newWithdrawInput){
+        alert("Your withdrawing more than balace");
+        return;
+    }
+
+    const newWithdraw = newWithdrawInput + previousWithdraw;
+    // console.log(newWithdraw);
+
+    withdrawAmount.innerText = newWithdraw;
+
 
     balanceText.innerText = newBalance;
     // console.log(previousBalace);

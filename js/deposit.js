@@ -5,23 +5,61 @@ document.getElementById('btn-deposit').addEventListener('click', function(){
     // step 2.a: get the value of input data
     const depositInputValue = document.getElementById('deposit-amount');
     const newDepositValue = parseFloat(depositInputValue.value);
-    // console.log(newDepositValue);
-    
+    // console.log(typeof newDepositValue);
+    // step 7: clear the deposit input field
+    depositInputValue.value = '';
+
     // step 3: Get the deposit number view-data using an id
     // step 3.a: get the inner data of that deposit using .innerText
     const depositView = document.getElementById('deposit-view'); 
     const previousDepositAmount = parseFloat(depositView.innerText);
-    // console.log(previousDepositAmount);
+    // console.log(typeof previousDepositAmount);
     
     // step 4: Sum the previous deposit with new deposti amount
     const currentDepositAmount = newDepositValue + previousDepositAmount;
-    console.log(currentDepositAmount);
+    // console.log(typeof currentDepositAmount);
 
     // step 5: swap the innertext of the deposit view with new deposit ammount
     depositView.innerText = currentDepositAmount;
     
-    // step 7: clear the deposit input field
-    depositInputValue.value = '';
+    const balanceText = document.getElementById('total-view');
+    const previousBalace = parseFloat(balanceText.innerText);
+    
+    const newBalance = previousBalace + newDepositValue;
+    // console.log(newBalance);
+
+    balanceText.innerText = newBalance;
+    // console.log(previousBalace);
+
+});
+
+
+document.getElementById('btn-withdraw').addEventListener('click', ()=>{
+
+    const withdrawInputText = document.getElementById('withdraw-amount');
+    const withdrawValueInputString = withdrawInputText.value;
+    const newWithdrawInput = parseFloat(withdrawValueInputString);
+    withdrawInputText.value = '';
+    // console.log(newWithdrawInput);
+
+    const withdrawAmount = document.getElementById('withdraw-view');
+    const withdrawViewString = withdrawAmount.innerText;
+    const previousWithdraw = parseFloat(withdrawViewString);
+    // console.log(withdrawView);
+
+    const newWithdraw = newWithdrawInput + previousWithdraw;
+    // console.log(newWithdraw);
+
+    withdrawAmount.innerText = newWithdraw;
+
+    const balanceText = document.getElementById('total-view');
+    const previousBalace = parseFloat(balanceText.innerText);
+
+    const newBalance = previousBalace - newWithdrawInput;
+    // console.log(newBalance);
+
+    balanceText.innerText = newBalance;
+    // console.log(previousBalace);
 
 
 });
